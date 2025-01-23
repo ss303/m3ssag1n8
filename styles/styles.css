@@ -1,0 +1,351 @@
+/* Set default margins, padding, box sizing for all page elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set up main page format using CSS grid */
+body {
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  font-family: "Lucida Console", monospace;
+  display: grid;
+  grid-template-rows: min-content auto min-content;
+  grid-template-columns: 225px auto;
+}
+
+/* General Element Styles */
+h2 {
+  text-align: left;
+  font-size: 18px;
+}
+
+p {
+  font-size: 12px;
+}
+
+button {
+  border: none;
+  padding: 5px 18px;
+  border-radius: 8px;
+  background-color: #3b75b8;
+  font-family: "Lucida Console", monospace;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+button:hover {
+  background-color: #779ecb;
+}
+
+button:active {
+  background-color: #9cb8d9;
+}
+
+/* Login Dialog */
+#login-modal {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border: none;
+  z-index: 20;
+}
+
+#login-modal.hide {
+  display: none;
+}
+
+#login-check {
+  text-align: center;
+  width: 400px;
+  height: 300px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 115px 50px;
+}
+
+/* Login Dialog Submit Button */
+#submit-button {
+  padding: 4px 8px;
+  border-radius: 5px;
+  background-color: lightgrey;
+  color: black;
+}
+
+#submit-button:hover {
+  background-color: #dcdcdc;
+}
+
+#submit-button:active {
+  background-color: #e7e7e7;
+}
+
+.modify-database-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Workspaces Dialog */
+#workspace-modal-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#workspaces-modal {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  z-index: 10;
+}
+
+#workspaces-modal.hide {
+  display: none;
+}
+
+#workspaces-modal-content {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 5px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 30px 40px;
+  max-height: 90vh;
+}
+
+#workspaces-modal button {
+  width: 175px;
+}
+
+/* Container for Workspaces in Workspaces Dialog */
+#select-workspace {
+  height: 280px;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background-color: #e4e4e4;
+  margin: 10px 0px;
+  overflow-y: auto;
+}
+
+/* Error Modal */
+#error-modal {
+  display: grid;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+}
+
+#error-modal.hide {
+  display: none;
+}
+
+#error-modal form {
+  width: 350px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  gap: 5px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 50px 40px;
+}
+
+#close-error-button {
+  margin-top: 10px;
+}
+
+.close-button {
+  background-color: #d71828;
+}
+
+.close-button:hover {
+  background-color: #dc4652;
+}
+
+.close-button:active {
+  background-color: #e7707a;
+}
+
+/* Page Header */
+header {
+  display: grid;
+  grid-column: 1/3;
+  grid-row: 1/2;
+  grid-template-columns: min-content auto min-content;
+  align-items: center;
+  background-color: #143152;
+  color: #ffffff;
+  width: 100%;
+  height: 55px;
+}
+
+/* Current Workspace Name */
+#workspace-title {
+  background-color: #143152;
+  color: #ffffff;
+  font-size: 20px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Page Header Buttons */
+header button {
+  margin: 0px 15px;
+  height: 24px;
+}
+
+#open-workspaces-button {
+  grid-column: 1/2;
+}
+
+/* Username */
+#username-header {
+  padding-top: 6px;
+  max-width: 30vw;
+  overflow-x: auto;
+}
+
+/* Logout Section */
+.logout {
+  padding-left: 15px;
+  grid-column: 3/4;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+/* Channels Side Bar */
+#channels {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  background-color: #3b75b8;
+  width: 225px;
+  height: calc(100vh - 145px);
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  padding: 10px;
+  overflow-y: auto;
+  /* Allow channels to overflow/allow scroll */
+}
+
+/* nav.hide {
+  display: none;
+} */
+
+/* #channels {
+  width: 100%;
+} */
+
+/* Modify Channel Options Box */
+#modify-channel {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  width: 225px;
+  height: 90px;
+  text-align: center;
+  background-color: #143152;
+  padding: 7px;
+}
+
+#modify-channel.hide {
+  background-color: #3b75b8;
+}
+
+#modify-channel button {
+  width: 175px;
+  margin-bottom: 5px;
+}
+
+/* Allow hiding adding/refreshing channels if a workspace is not open */
+#modify-channel-form.hide {
+  display: none;
+}
+
+#refresh-channels-button.hide {
+  display: none;
+}
+
+#channel-content {
+  grid-column: 2/3;
+  grid-row: 2/4;
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 225px);
+}
+
+/* Current Channel Name */
+#channel-title {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
+  background-color: #205fa7;
+  color: #ffffff;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#channel-title.hide {
+  display: none;
+}
+
+/* Current Channel's Post Area */
+#post-area {
+  width: 100%;
+  height: calc(100vh - 185px);
+  display: block;
+  flex-direction: column;
+  padding: 0px 20px 10px;
+  overflow-y: auto;
+  /* Allow posts to overflow/allow scroll */
+  overflow-x: auto;
+  overflow-wrap: break-word;
+  z-index: 6;
+}
+
+/* Wrapper around form to create a new top-level post, fixed at bottom of page */
+#main-post-textarea {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  width: 100%;
+  height: 90px;
+  z-index: 5;
+}
+
+#main-post-textarea.hide {
+  display: none;
+}

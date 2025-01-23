@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="COMP 318 Messaging System." />
+    <title>COMP 318 M3ssag1n8</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.6/iconify-icon.min.js"></script>
+    <script defer type="module" src="../src/main.ts"></script>
+  </head>
+
+  <body>
+    <!-- Errors Modal -->
+    <dialog id="error-modal" class="hide">
+      <form id="error-form" action="">
+        <label id="error-message" aria-live="assertive">
+          <!-- Error message goes here -->
+        </label>
+        <button type="button" id="close-error-button">close</button>
+      </form>
+    </dialog>
+
+    <!-- Login Modal -->
+    <dialog id="login-modal">
+      <form action="" method="post" id="login-check">
+        <label for="username-input">
+          Enter your username:<br /><br />
+          <input
+            aria-label="Enter username"
+            type="text"
+            id="username-input"
+            name="username"
+            required
+          />
+        </label>
+
+        <button type="submit" id="submit-button">Login</button>
+      </form>
+    </dialog>
+
+    <!-- Page Header -->
+    <header>
+      <button type="button" class="header-button" id="open-workspaces-button">
+        workspaces
+      </button>
+
+      <h1 id="workspace-title"></h1>
+
+      <section class="logout">
+        <p id="username-header"></p>
+        <button type="button" class="header-button" id="logout-button">
+          logout
+        </button>
+      </section>
+    </header>
+
+    <!-- Workspaces Modal -->
+    <dialog id="workspaces-modal" class="hide">
+      <section id="workspaces-modal-content">
+        <p id="workspace-modal-title">select workspace:</p>
+
+        <nav id="select-workspace">
+          <!-- Workspaces are added here -->
+        </nav>
+
+        <!-- Add Workspace -->
+        <form
+          action=""
+          method="post"
+          class="modify-database-form"
+          id="modify-workspace-form"
+        >
+          <input
+            aria-label="Enter workspace name to create"
+            type="text"
+            id="workspace-input"
+            name="workspace"
+            required
+          />
+          <button type="submit" id="add-workspace">add workspace</button>
+        </form>
+        <button
+          type="button"
+          class="refresh-button"
+          id="refresh-workspaces-button"
+        >
+          refresh workspaces
+        </button>
+        <br />
+        <button type="button" class="close-button" id="close-workspaces-button">
+          close
+        </button>
+      </section>
+    </dialog>
+
+    <!-- Templates -->
+
+    <!-- Template for a post -->
+    <template id="post-template">
+      <style>
+        h3 {
+          font-size: 14px;
+          margin-bottom: 0px;
+          margin-top: 14px;
+        }
+
+        p {
+          font-size: 13px;
+          margin: 6px 0px;
+        }
+
+        button {
+          border: none;
+          border-radius: 6px;
+          padding: 4.5px 6px;
+          display: flex;
+          align-items: center;
+        }
+
+        button:hover {
+          opacity: 80%;
+        }
+
+        button:active {
+          opacity: 60%;
+        }
+
+        .post-button {
+          background-color: darkgrey;
+          color: #ffffff;
+        }
+
+        .post-button.reacted {
+          background-color: lightseagreen;
+        }
+
+        .reply-button {
+          background-color: #3b75b8;
+          color: #ffffff;
+        }
+
+        .pin-button {
+          background-color: white;
+          padding: 0px 2px;
+          color: darkgrey;
+        }
+
+        .pin-button.pinned {
+          color: orange;
+        }
+
+        .reaction-buttons {
+          display: flex;
+          gap: 6px;
+          margin-bottom: 15px;
+        }
+
+        .reaction-buttons p {
+          margin: 1px 1px 0px 4px;
+          font-family: "Lucida Console", monospace;
+          color: #ffffff;
+        }
+
+        .replies {
+          margin-left: 16px;
+          border-left: solid lightgrey;
+          padding-left: 12px;
+        }
+      </style>
+      <article id="post">
+        <h3>
+          <!-- Username and post time go here -->
+        </h3>
+        <p class="post-content">
+          <!-- Post message goes here -->
+        </p>
+        <section class="reaction-buttons">
+          <button class="post-button" data-button="smile" id="smile">
+            <!-- Smile reaction -->
+            <iconify-icon
+              class="post-icon"
+              icon="mynaui:smile-circle-solid"
+              width="1.25em"
+              height="1.25em"
+              aria-label="smile reaction"
+            ></iconify-icon>
+            <p id="smile-count"></p>
+          </button>
+          <button class="post-button" data-button="frown" id="frown">
+            <!-- Frown reaction -->
+            <iconify-icon
+              class="post-icon"
+              icon="mynaui:sad-circle-solid"
+              width="1.25em"
+              height="1.25em"
+              aria-label="frown reaction"
+            ></iconify-icon>
+            <p id="frown-count"></p>
+          </button>
+          <button class="post-button" data-button="like" id="like">
+            <!-- Like reaction -->
+            <iconify-icon
+              class="post-icon"
+              icon="mynaui:like-solid"
+              width="1.25em"
+              height="1.25em"
+              aria-label="like reaction"
+            ></iconify-icon>
+            <p id="like-count"></p>
+          </button>
+          <button class="post-button" data-button="celebrate" id="celebrate">
+            <!-- Celebrate reaction -->
+            <iconify-icon
+              class="post-icon"
+              icon="mynaui:confetti-solid"
+              width="1.25em"
+              height="1.25em"
+              aria-label="celebrate reaction"
+            ></iconify-icon>
+            <p id="celebrate-count"></p>
+          </button>
+          <button class="reply-button" data-button="reply" id="reply">
+            <!-- Reply post icon -->
+            <iconify-icon
+              class="post-icon"
+              icon="mynaui:chat-plus-solid"
+              width="1.25em"
+              height="1.25em"
+              aria-label="reply"
+            ></iconify-icon>
+          </button>
+          <button class="pin-button" data-button="pin" id="pin" type="button">
+            <!-- Favorite post icon -->
+            <iconify-icon
+              class="pin-icon"
+              icon="mynaui:pin-solid"
+              width="1.35em"
+              height="1.35em"
+              aria-label="pin post"
+            ></iconify-icon>
+          </button>
+        </section>
+
+        <section class="replies">
+          <!-- Replies are added here -->
+        </section>
+      </article>
+    </template>
+
+    <!-- Template for a workspace -->
+    <template id="workspace-template">
+      <style>
+        .workspace {
+          width: 76%;
+          padding: 5px;
+          margin-bottom: 5px;
+          background: #e4e4e4;
+          color: black;
+          border: none;
+          border-radius: 8px;
+          font-family: "Lucida Console", monospace;
+          font-size: 14px;
+          overflow-wrap: break-word;
+        }
+
+        .workspace:hover {
+          background: #f2f2f2;
+        }
+
+        .workspace:active {
+          background: white;
+        }
+
+        .delete-workspace {
+          display: inline;
+          padding: 5px 2px;
+          background-color: #e4e4e4;
+          border: none;
+          color: black;
+        }
+
+        .delete-workspace:hover {
+          color: #f15865;
+        }
+
+        .delete-workspace:active {
+          color: #f58790;
+        }
+
+        .pin-workspace {
+          padding: 5px 2px;
+          background-color: #e4e4e4;
+          border: none;
+          color: black;
+        }
+
+        .pin-workspace:hover {
+          opacity: 70%;
+        }
+
+        .pin-workspace:active {
+          opacity: 50%;
+        }
+
+        .pin-workspace.pinned {
+          color: orange;
+        }
+      </style>
+      <button class="workspace">
+        <!-- Workspace name goes here -->
+      </button>
+      <button class="delete-workspace" id="delete-workspace">
+        <iconify-icon
+          icon="mynaui:trash"
+          width="1.25em"
+          height="1.25em"
+          aria-label="delete workspace"
+        ></iconify-icon>
+      </button>
+      <button class="pin-workspace" id="pin" type="button">
+        <!-- Favorite workspace icon -->
+        <iconify-icon
+          icon="mynaui:pin-solid"
+          width="1.25em"
+          height="1.25em"
+          aria-label="pin workspace"
+        ></iconify-icon>
+      </button>
+    </template>
+
+    <!-- Template for a channel -->
+    <template id="channel-template">
+      <style>
+        .channel {
+          width: 72%;
+          padding: 6px 5px;
+          margin-bottom: 5px;
+          background-color: #3b75b8;
+          color: #ffffff;
+          border: none;
+          border-radius: 8px;
+          font-family: "Lucida Console", monospace;
+          font-size: 13px;
+          overflow-wrap: break-word;
+        }
+
+        .channel:hover {
+          background-color: #608ec3;
+        }
+
+        .channel:active {
+          background-color: #82abd9;
+        }
+
+        .delete-channel {
+          padding: 5px 0px;
+          background-color: #3b75b8;
+          border: none;
+          color: white;
+        }
+
+        .delete-channel:hover {
+          color: #f15865;
+        }
+
+        .delete-channel:active {
+          color: #f58790;
+        }
+
+        .pin-channel {
+          padding: 5px 0px;
+          background-color: #3b75b8;
+          border: none;
+          color: white;
+        }
+
+        .pin-channel:hover {
+          opacity: 80%;
+        }
+
+        .pin-channel:active {
+          opacity: 60%;
+        }
+
+        .pin-channel.pinned {
+          color: orange;
+        }
+      </style>
+      <button class="channel" id="channel">
+        <!-- Channel name goes here -->
+      </button>
+      <button class="delete-channel" id="delete-channel">
+        <iconify-icon
+          icon="mynaui:trash"
+          width="1.15em"
+          height="1.15em"
+          aria-label="delete channel"
+        ></iconify-icon>
+      </button>
+      <button class="pin-channel" id="pin" type="button">
+        <!-- Favorite channel icon -->
+        <iconify-icon
+          icon="mynaui:pin-solid"
+          width="1.15em"
+          height="1.15em"
+          aria-label="pin channel"
+        ></iconify-icon>
+      </button>
+    </template>
+
+    <!-- Template for a create post textarea -->
+    <template id="post-textarea-template">
+      <style>
+        #make-post-form {
+          background-color: #c1d3e7;
+          width: calc(100% - 10px);
+          border-radius: 8px;
+          padding: 5px;
+          height: auto;
+        }
+
+        #make-post-form textarea {
+          width: calc(100% - 2px);
+          margin: 0px;
+          padding: 0px;
+          height: 45px;
+          resize: none;
+        }
+
+        button {
+          border: none;
+          border-radius: 8px;
+          font-family: "Lucida Console", monospace;
+
+          padding: 4px 6px;
+          background-color: #3b75b8;
+          color: white;
+        }
+
+        button:hover {
+          background-color: #779ecb;
+        }
+
+        button:active {
+          background-color: #9cb8d9;
+        }
+
+        #make-post-buttons {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+        }
+
+        #style-post-buttons {
+          width: auto;
+          display: flex;
+          padding-top: 1px;
+          gap: 5px;
+          overflow-x: auto;
+        }
+
+        #style-post-form #send-post {
+          height: 26px;
+          padding: 1px 15px;
+          margin: 0px 0px 0px auto;
+        }
+
+        #send-delete-buttons {
+          margin: 0px 0px 0px auto;
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+        }
+
+        #close-form {
+          padding: 0px;
+          background-color: #c1d3e7;
+          color: red;
+        }
+
+        #close-form:hover {
+          color: rgb(255, 81, 81);
+        }
+
+        #close-form:active {
+          color: rgb(255, 119, 119);
+        }
+      </style>
+
+      <form id="make-post-form">
+        <textarea
+          type="text"
+          class="post-input"
+          name="post"
+          aria-label="type post"
+          required
+        ></textarea>
+
+        <section id="make-post-buttons">
+          <section id="style-post-buttons">
+            <button type="button" id="bold-text-button" data-button="bold">
+              <!-- Bold text icon -->
+              <iconify-icon
+                icon="mynaui:type-bold-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="bold text"
+              ></iconify-icon>
+            </button>
+            <button type="button" id="italic-text-button" data-button="italic">
+              <!-- Italic text icon -->
+              <iconify-icon
+                icon="mynaui:type-italic-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="italic text"
+              ></iconify-icon>
+            </button>
+            <button type="button" id="link-text-button" data-button="link">
+              <!-- Link icon -->
+              <iconify-icon
+                icon="mynaui:link-two-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="insert link"
+              ></iconify-icon>
+            </button>
+
+            <button type="button" id="smile-text-button" data-button="smile">
+              <!-- Smile reaction -->
+              <iconify-icon
+                icon="mynaui:smile-circle-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="smile reaction"
+              ></iconify-icon>
+            </button>
+            <button type="button" id="frown-text-button" data-button="frown">
+              <!-- Frown reaction -->
+              <iconify-icon
+                icon="mynaui:sad-circle-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="frown reaction"
+              ></iconify-icon>
+            </button>
+            <button type="button" id="like-text-button" data-button="like">
+              <!-- Like reaction -->
+              <iconify-icon
+                icon="mynaui:like-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="like reaction"
+              ></iconify-icon>
+            </button>
+            <button
+              type="button"
+              id="celebrate-text-button"
+              data-button="celebrate"
+            >
+              <!-- Celebrate reaction -->
+              <iconify-icon
+                icon="mynaui:confetti-solid"
+                width="1.25em"
+                height="1.25em"
+                aria-label="celebrate reaction"
+              ></iconify-icon>
+            </button>
+          </section>
+          <section id="send-delete-buttons">
+            <button type="submit" id="send-post">send</button>
+
+            <button id="close-form">
+              <!-- Close icon -->
+              <iconify-icon
+                icon="mynaui:x-square-solid"
+                width="1.75em"
+                height="1.75em"
+                aria-label="close reply box"
+              ></iconify-icon>
+            </button>
+          </section>
+        </section>
+      </form>
+    </template>
+
+    <!-- Channels Side Bar -->
+    <nav id="channels">
+      <!-- Channels are added here -->
+    </nav>
+
+    <!-- Add/Refresh Channel -->
+    <section id="modify-channel" class="hide">
+      <form
+        action=""
+        method="post"
+        class="modify-database-form hide"
+        id="modify-channel-form"
+      >
+        <input
+          aria-label="Enter channel name to create"
+          type="text"
+          id="channel-input"
+          name="channel"
+          required
+        />
+        <button type="submit" data-button="add" id="add-channel">
+          add channel
+        </button>
+      </form>
+
+      <button
+        type="button"
+        class="refresh-button hide"
+        id="refresh-channels-button"
+      >
+        refresh channels
+      </button>
+    </section>
+
+    <!-- Current Channel's Post Area -->
+    <main id="channel-content">
+      <h2 tabindex="-1" id="channel-title" class="hide"></h2>
+
+      <section id="post-area">
+        <!-- Posts are added here -->
+      </section>
+
+      <section id="main-post-textarea">
+        <!-- Main post textarea is added here -->
+      </section>
+    </main>
+  </body>
+</html>

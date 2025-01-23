@@ -1,0 +1,38 @@
+{
+  "name": "m3ssag1n8",
+  "version": "1.1.0",
+  "description": "COMP 318 Messaging Web App",
+  "browserslist": "defaults",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "parcel build html/*.html",
+    "check": "tsc",
+    "doc": "typedoc --entryPointStrategy expand src/ types/",
+    "format": "prettier --write html/ src/ styles/",
+    "start": "parcel html/*.html",
+    "test": "cypress run -b chrome",
+    "report": "nyc report"
+  },
+  "author": "COMP 318",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.0.0 <21.0.0"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.13.4",
+    "@parcel/transformer-inline-string": "^2.12.0",
+    "babel-plugin-istanbul": "^7.0.0",
+    "cypress": "^13.15.0",
+    "dotenv": "^16.4.5",
+    "json-schema-to-ts": "^3.1.1",
+    "parcel": "^2.11.0",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "typedoc": "^0.26.10",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
+    "ajv": "^8.17.1"
+  }
+}

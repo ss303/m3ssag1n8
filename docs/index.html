@@ -1,0 +1,89 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>m3ssag1n8</title><meta name="description" content="Documentation for m3ssag1n8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div><div class="field"><div id="tsd-toolbar-links"></div></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">m3ssag1n8</a></div><div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>m3ssag1n8</h1></div><div class="tsd-panel tsd-typography"><p><a href="https://classroom.github.com/a/eQ8wCMyM" target="_blank" class="external"><img src="https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg" alt="Review Assignment Due Date"></a></p>
+<a id="md:m3ssag1n8-project" class="tsd-anchor"></a><h1 class="tsd-anchor-link">M3ssag1n8 Project<a href="#md:m3ssag1n8-project" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>Messaging web client application for COMP 318.</p>
+<a id="md:getting-stated" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Getting stated<a href="#md:getting-stated" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Install all of the required dependencies in order to build your project:</p>
+<p><code>npm install</code></p>
+<p>This will automatically install all of the tools and dependencies that are
+needed and allowed for the project.  You should only need to run npm install
+once each time you create a fresh clone.</p>
+<p>You should <em>not</em> use <code>npm install</code> to install anything else. The packages in
+<code>package.json</code> that are installed with this command are the only packages you
+are allowed to use.</p>
+<a id="md:provided-resources" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Provided Resources<a href="#md:provided-resources" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><a id="md:srcmaints" class="tsd-anchor"></a><h3 class="tsd-anchor-link">src/main.ts<a href="#md:srcmaints" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>The provided <code>main.ts</code> file is a simple skeleton for you to start with. It
+simply declares the process environment variables and prints a message to the
+console (using slog).</p>
+<a id="md:srcslogts" class="tsd-anchor"></a><h3 class="tsd-anchor-link">src/slog.ts<a href="#md:srcslogts" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>This is a simple structured logging package that you may use. Feel free to
+modify it to suit your needs.</p>
+<a id="md:htmlindexhtml" class="tsd-anchor"></a><h3 class="tsd-anchor-link">html/index.html<a href="#md:htmlindexhtml" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>This is a simple skeleton HTML file that should be the main page of your client.
+It includes everything you need for your project and the allowed external
+resources.</p>
+<p>The only additional external resources you may include in this file are <a href="https://fonts.google.com" target="_blank" class="external">Google
+Fonts</a>.</p>
+<a id="md:stylesstylescss" class="tsd-anchor"></a><h3 class="tsd-anchor-link">styles/styles.css<a href="#md:stylesstylescss" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>This is an empty file where you can put your CSS.  It is already linked
+from html/index.html.</p>
+<a id="md:environment-variables" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Environment Variables<a href="#md:environment-variables" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>You must not hardcode the database URL into your application.  Instead, you
+should read the environment variables from the &quot;.env&quot; file to determine what
+OwlDB database to use. The provided &quot;.env&quot; file gives an example. Feel free
+to update the values (but not the environment variable names or the format)
+to refer to whatever database you want to use for testing purposes.</p>
+<p>When testing your code, we will use our own &quot;.env&quot; file that has exactly the
+same structure as the provided file.</p>
+<p>If you want to use different databases, you can have an &quot;.env.local&quot; file that
+is used instead of &quot;.env&quot;.  You should have &quot;.env&quot; checked into your git
+repostory, but <strong>you should not check in your &quot;.env.local&quot; files to git!</strong>.</p>
+<a id="md:build" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Build<a href="#md:build" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Before you build, you will need to create an empty &quot;schemas&quot; directory. This
+will be the directory that you will eventually add your schemas to.</p>
+<p>After you have created that directory, you can build your project as follows:</p>
+<p><code>npm run build</code></p>
+<p>This will create a file called &quot;dist/index.html&quot; along with the necessary
+additional files.  If you open &quot;dist/index.html&quot; in a web browser you will see
+your application.</p>
+<p>As you develop, you may instead want to use:</p>
+<p><code>npm start</code></p>
+<p>This starts up a web server and tells you the correct URL.  If you navigate to
+that URL, you will see your application.  The advantage of this method is that
+it does &quot;hot module reloading&quot;.  This means that as you edit and save your
+files, they will automatically be reloaded in the web browser.  Note, however,
+that this will not always work seemlessly, as you will lose some application
+state, depending on what you edited. So, you still may need to hit &quot;refresh&quot; in
+your browser.</p>
+<a id="md:additional-commands" class="tsd-anchor"></a><h2 class="tsd-anchor-link">Additional Commands<a href="#md:additional-commands" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>The &quot;package.json&quot; file defines some additional commands for you to use:</p>
+<ol>
+<li>Type checking</li>
+</ol>
+<p>To type check your project, run:</p>
+<p><code>npm run check</code></p>
+<p>This runs TypeScript over every &quot;.ts&quot; file in your &quot;src&quot; directory.  You should
+do this often.  Note that VSCode also continuously type checks your code as you
+work.</p>
+<ol start="2">
+<li>Formatting</li>
+</ol>
+<p>To format your code, run:</p>
+<p><code>npm run format</code></p>
+<p>This will use &quot;prettier&quot; to reformat your code to conform to the required style
+for the project. Again, you should do this often, preferably before every commit
+to git.</p>
+<ol start="3">
+<li>Documentation</li>
+</ol>
+<p>To produce documentation from your code, run:</p>
+<p><code>npm run doc</code></p>
+<p>This will run TypeDoc to produce documentation that you should ultimately commit
+to your git repository.</p>
+<ol start="4">
+<li>Testing</li>
+</ol>
+<p>You should write tests in files with names that end in &quot;.cy.ts&quot; that you store
+in a directory named &quot;cypress/e2e/&quot;. To run these tests, run:</p>
+<p><code>npm test</code></p>
+<p>This will run every test in test files named <testname>.cy.ts in the
+&quot;cypress/e2e&quot; directory.</p>
+<ol start="5">
+<li>Code Coverage</li>
+</ol>
+<p><em>After</em> you run your tests (using <code>npm test</code>), you can generate code
+coverage reports by running:</p>
+<p><code>npm run report</code></p>
+<p>This will show a table giving you the code coverage of your source files
+for the tests you just ran.</p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><use href="assets/icons.svg#icon-chevronDown"></use></svg>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#md:m3ssag1n8-project"><span>M3ssag1n8 <wbr/>Project</span></a><ul><li><a href="#md:getting-stated"><span>Getting stated</span></a></li><li><a href="#md:provided-resources"><span>Provided <wbr/>Resources</span></a></li><li><ul><li><a href="#md:srcmaints"><span>src/main.ts</span></a></li><li><a href="#md:srcslogts"><span>src/slog.ts</span></a></li><li><a href="#md:htmlindexhtml"><span>html/index.html</span></a></li><li><a href="#md:stylesstylescss"><span>styles/styles.css</span></a></li></ul></li><li><a href="#md:environment-variables"><span>Environment <wbr/>Variables</span></a></li><li><a href="#md:build"><span>Build</span></a></li><li><a href="#md:additional-commands"><span>Additional <wbr/>Commands</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="assets/icons.svg#icon-1"></use></svg><span>m3ssag1n8</span></a><ul class="tsd-small-nested-navigation" id="tsd-nav-container" data-base="."><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div></body></html>
